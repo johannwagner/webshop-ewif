@@ -1,0 +1,140 @@
+html, body {
+	margin: 0;
+	padding: 0;
+
+	height: 100%;
+}
+
+.Content {
+
+
+	min-height: 100%;
+	display: flex;
+	flex-flow: column;
+
+	justify-content: space-between;
+	align-items: center;
+}
+
+.Header {
+	width: 100%;
+	height: 100px;
+
+	background-color: lightskyblue;
+
+	display: flex;
+	flex-flow: column;
+
+	justify-content: center;
+	align-items: center;
+
+}
+
+.MenuPoints {
+	width: 100%;
+	display: flex;
+	flex-flow: row;
+	justify-content: space-around;
+}
+
+.MenuPoints > * {
+	padding: 5px;
+	cursor: pointer;
+}
+
+.MenuPoints > *:hover {
+	background-color: rgba(0,0,0,0.1);
+}
+
+.ShoppingCart {
+	display: none;
+}
+
+.AllBooks {
+	display: none;
+}
+
+.Footer {
+	background-color: lightskyblue;
+	height: 100px;
+	width: 100%;
+
+	display: flex;
+	flex-flow: column;
+	align-items: center;
+	justify-content: space-around;
+}
+
+.Overview {
+	display: flex;
+	flex-flow: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.AllBooksList {
+	flex-flow: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.DisplayNone {
+	display: none;
+}
+
+.Book {
+	display: flex;
+	flex-flow: row;
+
+	width: 300px;
+	height: 120px;
+	justify-content: space-around;
+	align-items: center;
+
+	background-color: rgba(0,0,0,0.1);
+	border-radius: 5px;
+	border: solid 1px black;
+
+	margin: 20px;
+	padding: 10px;
+
+	position: relative;
+
+}
+
+.Book > .InfoContainer {
+	display: flex;
+	flex-flow: column;
+
+	height: 100%;
+
+	justify-content: space-around;
+	align-items: center;
+}
+
+.Book > .InfoContainer > .AddCart {
+	cursor: pointer;
+}
+
+.Book > .Image > *{
+	border-radius: 50%;
+}
+
+.Book > .InfoContainer  > .Title {
+	font-size: 1.3em;
+
+}
+
+.Book > .InfoContainer  > .Author {
+	font-size: 0.8em;
+	color: #333333;
+}
+
+.Book > .InfoContainer > .Price {
+	color: red;
+	font-size: 1.2em;
+}
+
+.selectedMenuItem {
+	background-color: rgba(0,0,0,0.2)
+}
