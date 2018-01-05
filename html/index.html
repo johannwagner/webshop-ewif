@@ -10,7 +10,55 @@
 	<script type="text/javascript" src="index.js"></script>
 	<script type="text/javascript">
 		let selectedSite = 'overview';
-		const shoppingCart = [1];
+		const shoppingCart = [];
+
+		const bookJsonUrl = "https://raw.githubusercontent.com/benoitvallon/100-best-books/master/books.json";
+		let bookList = [];
+
+		/*
+		  {
+		    "author": "Jane Austen",
+		    "country": "United Kingdom",
+		    "imageLink": "images/pride-and-prejudice.jpg",
+		    "language": "English",
+		    "link": "https://en.wikipedia.org/wiki/Pride_and_Prejudice\n",
+		    "pages": 226,
+		    "title": "Pride and Prejudice",
+		    "year": 1813
+		  },
+  		*/
+
+
+		$.get(bookJsonUrl, (booksString) => {
+			books = JSON.parse(booksString);
+
+			bookList = books.map((b, index) => {
+
+				const max = 20;
+				const min = 10;
+
+				return {
+					id: index + 1, // Start with 1. Design Decision.
+					author: b.author,
+					title: b.title,
+					coverImage: 'http://placehold.it/100x100',
+					price:  Number(Math.random() * (max - min) + min).toFixed(2)
+				}
+
+
+
+
+			})
+
+			renderShoppingCartBubble();
+			renderHighlightedBooks();
+			renderShoppingCart();	
+			renderAllBooks();
+							
+
+		})
+
+		/*
 		const bookList = [
 			{	
 				id: 1,
@@ -84,6 +132,7 @@
 			},
 
 		];
+		*/
 	</script>
 </head>
 <body>
@@ -97,7 +146,6 @@
 					ShoppingCart (
 					<span id="shoppingCartBubble"> 
 						<script type="text/javascript">
-							renderShoppingCartBubble();
 						</script>
 					</span>
 					)
@@ -105,27 +153,28 @@
 			</div>
 		</div>
 		<div id="overview">
-			<h2> Current Spotlight </h2>
+			<h2> Current Shotlight </h2>
 			<div id="overviewBookList" class="Overview">
 				<script type="text/javascript">
-					renderHighlightedBooks();
 				</script>
 			</div>
 		</div>
-		<div id="shoppingcart">
+		<div id="shoppingcart" class="ShoppingCart">
 			<h2> Shopping Cart </h2>
-			<div id="shoppingcartBookList" class="ShoppingCart">
-				<script type="text/javascript">
-					renderShoppingCart();				
-				</script>
+			<div id="shoppingcartBookList">
+				
 			</div>
+			<div id="shoppingcartTotal">
+				
+			</div>
+			<script type="text/javascript">
+			</script>
 			
 		</div>
 		<div id="allbooks" class="AllBooks">
 			<h2>All Books</h2>
 			<div id="allbooksBookList" class="AllBooksList">
 				<script type="text/javascript">
-					renderAllBooks();
 				</script>
 			</div>
 			

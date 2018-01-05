@@ -13,7 +13,7 @@ function showSite(siteName) {
 
 	selectedSite = siteName;
 
-	document.getElementById(siteName).style.display = 'flex';
+	document.getElementById(siteName).style.display = 'block';
 	document.getElementById(siteName + 'MenuItem').className = 'selectedMenuItem';
 }
 
@@ -28,7 +28,7 @@ function renderBook(bookData, containerId, noAddToCart) {
 
 
 	$.ajax({
-    	url : "http://localhost:5000/book.html",
+    	url : "book.html",
     	async: false,
     	success : function(htmlTemplate){
 			// Set Data in Template
@@ -88,15 +88,23 @@ function renderShoppingCart() {
 	document.getElementById('shoppingcartBookList').innerHTML = null;
 
 
+
+
 	const bookListForShoppingCart = shoppingCart.map((id) => {
-		return bookList[id];
+		// We cannot access the indexes directly, because id != index.
+		// Dumb Design Idea, yeah.
+		return bookList.find(b => b.id === id);
 	})
+
+	console.log(shoppingCart);
 
 	for (index in bookListForShoppingCart) {
 		const book = bookListForShoppingCart[index];
 
 		renderBook(book, 'shoppingcartBookList', true);
 	}
+
+	document.getElementById('shoppingcartTotal').innerHTML = `<h3>Total: ${bookListForShoppingCart.length <= 0 ? '0.00' : bookListForShoppingCart.map(b => b.price).reduce((sum, currentValue) => sum + currentValue)} €</h3>`
 
 
 }
